@@ -9,8 +9,10 @@ import com.soapsoft.model.TbUsuario;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
+import org.hibernate.type.IntegerType;
 
 /*
  * @author hdcardenas dropimax@gmail.com
@@ -21,17 +23,24 @@ public class TbUsuarioDaoImpl extends GenericDaoImpl<TbUsuario, Integer> impleme
     public TbUsuario fn_validar_usuario(String nombre,String contrasena) throws HibernateException{
     
         TbUsuario resultado = null;
- 
-         startOperation();
-         String sql = "SELECT * FROM tb_usuario WHERE usuario = :p_nombre_usuario AND contrasena = :p_contrasena ";
-         SQLQuery query = session.createSQLQuery(sql); 
-         query.setParameter("p_nombre_usuario", nombre);
-         query.setParameter("p_contrasena", contrasena);
-         query.setResultTransformer(Transformers.aliasToBean(com.soapsoft.model.TbUsuario.class) );
-         List data = query.list();
-         for (Iterator iterator = data.iterator(); iterator.hasNext();){
-            resultado = (TbUsuario) iterator.next(); 
-         }       
+        startOperation();
+        
+           Query query = session.createSQLQuery(
+            "SELECT id FROM tb_usuario WHERE usuario = :p_nombre_usuario AND contrasena = :p_contrasena ")
+            .addScalar("id", new IntegerType()
+            );
+           
+           query.setParameter("p_nombre_usuario", nombre);
+           query.setParameter("p_contrasena", contrasena);
+           
+           query.setResultTransformer(Transformers.aliasToBean(TbUsuario.class));
+
+           List<TbUsuario> list = query.list();
+           
+           for (TbUsuario iterator : list){
+              resultado = iterator;
+           }   
+           
          return resultado;
    }
     
