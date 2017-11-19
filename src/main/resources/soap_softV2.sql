@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2017 a las 03:00:15
+-- Tiempo de generación: 19-11-2017 a las 05:29:16
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `soap_soft`
 --
+CREATE DATABASE IF NOT EXISTS `soap_soft` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `soap_soft`;
 
 -- --------------------------------------------------------
 
@@ -31,16 +33,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `tb_clientes` (
   `ID` int(11) NOT NULL,
   `nit` varchar(100) NOT NULL,
-  `razon_social` int(11) NOT NULL,
+  `razon_social` varchar(100) NOT NULL,
   `telefono` varchar(10) NOT NULL,
   `celular` varchar(10) NOT NULL,
   `contacto` int(100) NOT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT '1',
   `direccion` varchar(100) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) NOT NULL,
-  `modificadoEn` datetime NOT NULL
+  `modificadoEn` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -55,9 +57,9 @@ CREATE TABLE `tb_detalle_entrada_materia_prima` (
   `id_materia_prima` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -72,9 +74,9 @@ CREATE TABLE `tb_detalle_entrada_prod_term` (
   `id_producto_terminado` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -93,9 +95,9 @@ CREATE TABLE `tb_detalle_factura]_venta` (
   `vlor_unitario` int(11) NOT NULL,
   `vlor_total` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -114,9 +116,9 @@ CREATE TABLE `tb_detalle_orden_compra` (
   `vlor_unitario` int(11) NOT NULL,
   `vlor_total` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -131,9 +133,9 @@ CREATE TABLE `tb_detalle_produccion` (
   `id_producto_terminado` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -148,9 +150,9 @@ CREATE TABLE `tb_detalle_salida_materia_prima` (
   `id_materia_prima` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `CreadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `CreadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -165,9 +167,9 @@ CREATE TABLE `tb_detalle_salida_prod_term` (
   `id_salida_prod_terminado` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -179,9 +181,9 @@ CREATE TABLE `tb_detalle_salida_prod_term` (
 CREATE TABLE `tb_entrada_materia_prima` (
   `ID` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -193,9 +195,9 @@ CREATE TABLE `tb_entrada_materia_prima` (
 CREATE TABLE `tb_entrada_prod_terminado` (
   `ID` int(11) NOT NULL,
   `creadorPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -209,9 +211,9 @@ CREATE TABLE `tb_envio_notificacion_compras` (
   `tipo_notificacion` varchar(50) NOT NULL,
   `descripcion` varchar(200) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -223,11 +225,11 @@ CREATE TABLE `tb_envio_notificacion_compras` (
 CREATE TABLE `tb_envio_notificacion_produccion` (
   `ID` int(11) NOT NULL,
   `tipo_notificacion` varchar(50) NOT NULL,
-  `descripcion` int(200) NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -238,12 +240,12 @@ CREATE TABLE `tb_envio_notificacion_produccion` (
 
 CREATE TABLE `tb_factura_venta` (
   `ID` int(11) NOT NULL,
-  `observacion` int(11) NOT NULL,
+  `observacion` varchar(200) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modificadoPor` datetime DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modificadoPor` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -260,9 +262,9 @@ CREATE TABLE `tb_materia_prima` (
   `stock` float NOT NULL,
   `id_ubicacion` int(11) NOT NULL,
   `creadorPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -276,9 +278,9 @@ CREATE TABLE `tb_notificaciones_almacen` (
   `tipo_notificacion` varchar(50) NOT NULL,
   `descripcion` varchar(200) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL,
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `estado` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -292,9 +294,9 @@ CREATE TABLE `tb_orden_compra` (
   `ID` int(11) NOT NULL,
   `id_proveedor` int(11) NOT NULL,
   `creadorPor` int(11) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL,
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `observacion` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -308,10 +310,10 @@ CREATE TABLE `tb_produccion` (
   `ID` int(11) NOT NULL,
   `id_dpto_produccion` varchar(100) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `observacion` varchar(200) NOT NULL,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -328,9 +330,9 @@ CREATE TABLE `tb_producto_terminado` (
   `stock` int(11) NOT NULL,
   `id_ubicacion` int(11) NOT NULL,
   `creadorPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -349,9 +351,9 @@ CREATE TABLE `tb_proveedor` (
   `direccion` varchar(100) NOT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT '1',
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -362,13 +364,20 @@ CREATE TABLE `tb_proveedor` (
 
 CREATE TABLE `tb_rol_usuario` (
   `ID` int(11) NOT NULL,
-  `descripcion` int(11) NOT NULL,
+  `descripcion` varchar(11) NOT NULL,
   `estado_rol` tinyint(1) NOT NULL DEFAULT '1',
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) NOT NULL,
-  `modificadoEn` datetime NOT NULL
+  `modificadoEn` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tb_rol_usuario`
+--
+
+INSERT INTO `tb_rol_usuario` (`ID`, `descripcion`, `estado_rol`, `creadoPor`, `creadoEn`, `modificadoPor`, `modificadoEn`) VALUES
+(1, 'Admin', 1, '1', NULL, '1', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -381,9 +390,9 @@ CREATE TABLE `tb_salida_materia_prima` (
   `dpto_producion` varchar(100) NOT NULL,
   `id_producto_terminado` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -397,9 +406,9 @@ CREATE TABLE `tb_salida_prod_terminado` (
   `despachadorPara` varchar(100) NOT NULL,
   `observaciones` varchar(100) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -412,9 +421,9 @@ CREATE TABLE `tb_ubicacion` (
   `ID` int(11) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -431,11 +440,19 @@ CREATE TABLE `tb_usuario` (
   `contrasena` varchar(50) NOT NULL,
   `estado_usuario` tinyint(1) NOT NULL DEFAULT '1',
   `creadoPor` varchar(50) NOT NULL,
-  `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) NOT NULL,
-  `modificadoEn` datetime NOT NULL,
+  `modificadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tb_usuario`
+--
+
+INSERT INTO `tb_usuario` (`ID`, `nombre_usuario`, `cedula`, `usuario`, `contrasena`, `estado_usuario`, `creadoPor`, `creadoEn`, `modificadoPor`, `modificadoEn`, `id_rol`) VALUES
+(1, 'hernaxxxx', 111, 'herna', 'herna2', 1, 'herna', '2017-11-10 20:23:23', 'herna', '2017-11-01 00:00:00', 1),
+(2, '555555', 1, 'x', 'x', 1, 'x', '2017-11-18 18:28:04', 'x', '2017-11-18 18:28:04', 1);
 
 --
 -- Índices para tablas volcadas
@@ -719,6 +736,12 @@ ALTER TABLE `tb_salida_prod_terminado`
 --
 ALTER TABLE `tb_ubicacion`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `tb_usuario`
+--
+ALTER TABLE `tb_usuario`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

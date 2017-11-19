@@ -6,10 +6,15 @@
 package com.soapsoft.dao;
 
 import com.soapsoft.model.TbUsuario;
+import java.util.List;
+import java.util.Map;
 
 /*
  * @author hdcardenas dropimax@gmail.com
  */
 public interface TbUsaurioDao extends GenericDao<TbUsuario, Integer>{
          
+   public List<Map<String,Object>> fn_validar_usuario_map(String nombre,String contrasena);
+   public List<TbUsuario> fn_validar_usuario_objeto(String nombre,String contrasena);
+    
 }

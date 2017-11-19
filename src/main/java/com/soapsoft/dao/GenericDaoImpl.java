@@ -1,14 +1,22 @@
 package com.soapsoft.dao;
 
 import com.soapsoft.Util.HibernateUtil;
+import com.soapsoft.Util.LlaveValor;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.context.internal.ThreadLocalSessionContext;
 import org.hibernate.criterion.Projections;
+import org.hibernate.transform.AliasToEntityMapResultTransformer;
+import org.hibernate.transform.Transformers;
 
 /**
  * @author hdcardenas dropimax@gmail.com
@@ -165,4 +173,43 @@ public class GenericDaoImpl<T, E extends Serializable> implements GenericDao<T, 
           } 
         }
     }
+    
+    protected List<Map<String,Object>> Query(String sql, ArrayList<LlaveValor> parametros){
+         
+          startOperation();
+          
+          Query query = session.createSQLQuery(sql);
+          
+          for (LlaveValor parametro : parametros) {
+              query.setParameter(parametro.getKey(), parametro.getValue());
+          }
+          
+          query.setResultTransformer(AliasToEntityMapResultTransformer.INSTANCE);
+          List<Map<String,Object>> resultado = query.list();
+          
+          return resultado;
+ 
+      }
+    
+     protected List<T> Query(String sql, ArrayList<LlaveValor> parametros,Class<T> clase){
+         
+          startOperation();
+          List <T> list ;
+          
+          Query query = session.createSQLQuery(sql);
+          
+          for (LlaveValor parametro : parametros) {
+              query.setParameter(parametro.getKey(), parametro.getValue());
+          }
+          
+          query.setResultTransformer(Transformers.aliasToBean(clase));
+          
+          list = query.list() ;
+          
+          return list;
+ 
+      }
+    
+    
+    
 }
