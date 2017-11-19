@@ -148,7 +148,7 @@ public class GenericDaoImpl<T, E extends Serializable> implements GenericDao<T, 
     
     public void Close(){
       if(session != null){
-          session.close(); 
+          session.flush();
       }
     }
     

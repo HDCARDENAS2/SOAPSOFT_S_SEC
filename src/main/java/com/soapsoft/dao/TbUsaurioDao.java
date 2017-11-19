@@ -11,5 +11,5 @@ import com.soapsoft.model.TbUsuario;
  * @author hdcardenas dropimax@gmail.com
  */
 public interface TbUsaurioDao extends GenericDao<TbUsuario, Integer>{
-    
+         
 }

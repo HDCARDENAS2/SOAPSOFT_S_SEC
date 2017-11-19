@@ -6,6 +6,7 @@
 package com.soapsoft.servicio;
 
 import com.soapsoft.dao.TbUsuarioDaoImpl;
+import com.soapsoft.dao.TbUsuarioDaoQuery;
 import com.soapsoft.model.TbUsuario;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -26,10 +27,15 @@ public class SVR_GROUP_1 {
      */
     @WebMethod(operationName = "fn_login")
     public String fn_login(@WebParam(name = "nombre_usuario") String nombre, @WebParam(name = "contrasena") String contrasena) {   
+      
         String mensaje = "" ;
-        TbUsuarioDaoImpl dao_usuario = new TbUsuarioDaoImpl();   
+ 
         try {
-          TbUsuario resultado = dao_usuario.fn_validar_usuario(nombre, contrasena);
+       
+          TbUsuarioDaoQuery consulta = new  TbUsuarioDaoQuery();   
+          
+          TbUsuario resultado = consulta.fn_validar_usuario(nombre, contrasena);
+          
           if( resultado != null){
                mensaje = "El usuario existe";
           }else{
@@ -38,9 +44,8 @@ public class SVR_GROUP_1 {
         } catch (HibernateException e) {
             mensaje = "Ocurrio un error en la validacion del usuario ";
             throw e;
-        } finally {
-           dao_usuario.Close();
-        }       
+        } 
+        
         return mensaje;
     }
 
