@@ -3,17 +3,11 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 24/11/2017 11:36:12 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.soapsoft.model.TbRolUsuario" table="tb_rol_usuario" catalog="soap_soft" optimistic-lock="version">
-        <id name="id" type="int">
+    <class name="com.soapsoft.model.TbEntradaMateriaPrima" table="tb_entrada_materia_prima" catalog="soap_soft" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <property name="descripcion" type="string">
-            <column name="descripcion" length="11" not-null="true" />
-        </property>
-        <property name="estadoRol" type="boolean">
-            <column name="estado_rol" not-null="true" />
-        </property>
         <property name="creadoPor" type="string">
             <column name="creadoPor" length="50" not-null="true" />
         </property>
@@ -26,11 +20,11 @@
         <property name="modificadoEn" type="timestamp">
             <column name="modificadoEn" length="19" />
         </property>
-        <set name="tbUsuarios" table="tb_usuario" inverse="true" lazy="true" fetch="select">
+        <set name="tbDetalleEntradaMateriaPrimas" table="tb_detalle_entrada_materia_prima" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_rol" not-null="true" />
+                <column name="id_entrada_mat_prim" not-null="true" />
             </key>
-            <one-to-many class="com.soapsoft.model.TbUsuario" />
+            <one-to-many class="com.soapsoft.model.TbDetalleEntradaMateriaPrima" />
         </set>
     </class>
 </hibernate-mapping>

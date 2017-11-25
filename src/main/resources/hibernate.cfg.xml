@@ -49,7 +49,28 @@ Contributor(s):
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="com/soapsoft/model/TbProduccion.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbFacturaVenta.hbm.xml"/>
     <mapping resource="com/soapsoft/model/TbRolUsuario.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbDetalleProduccion.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbProveedor.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbEntradaMateriaPrima.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbDetalleEntradaProdTerm.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbDetalleOrdenCompra.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbDetalleSalidaMateriaPrima.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbEnvioNotificacionCompras.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbSalidaMateriaPrima.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbMateriaPrima.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbOrdenCompra.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbClientes.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbProductoTerminado.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbUbicacion.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbEntradaProdTerminado.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbDetalleEntradaMateriaPrima.hbm.xml"/>
     <mapping resource="com/soapsoft/model/TbUsuario.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbDetalleSalidaProdTerm.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbNotificacionesAlmacen.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbDetalleFacturaVenta.hbm.xml"/>
+    <mapping resource="com/soapsoft/model/TbSalidaProdTerminado.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
