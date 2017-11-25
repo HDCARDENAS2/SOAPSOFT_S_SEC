@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoints version="2.0" xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
   <endpoint implementation="com.soapsoft.servicio.SVR_GROUP_1" name="SVR_GROUP_1" url-pattern="/SVR_GROUP_1"/>
+  <endpoint implementation="com.soapsoft.servicio.SVR_USUARIO" name="SVR_USUARIO" url-pattern="/SVR_USUARIO"/>
 </endpoints>
