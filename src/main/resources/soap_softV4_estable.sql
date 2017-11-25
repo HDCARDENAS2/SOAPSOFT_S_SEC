@@ -3,12 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2017 a las 20:08:29
+-- Tiempo de generación: 25-11-2017 a las 06:19:49
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
-/*test*/
 
-/*test2*/
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -44,12 +42,15 @@ CREATE TABLE `tb_clientes` (
   `creadoPor` varchar(50) NOT NULL,
   `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modificadoPor` varchar(50) DEFAULT NULL,
-  `modificadoEn` datetime DEFAULT NULL
+  `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tb_clientes`
 --
+
+INSERT INTO `tb_clientes` (`ID`, `nit`, `razon_social`, `telefono`, `celular`, `contacto`, `estado`, `direccion`, `creadoPor`, `creadoEn`, `modificadoPor`, `modificadoEn`) VALUES
+(9, '1', 'test2', '123', '456', 789, 1, 'test3', 'hernan', '2017-11-20 14:24:50', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -250,7 +251,7 @@ CREATE TABLE `tb_factura_venta` (
   `id_cliente` int(11) NOT NULL,
   `creadoPor` varchar(50) NOT NULL,
   `creadoEn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modificadoPor` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modificadoPor` varchar(100) DEFAULT NULL,
   `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -383,7 +384,7 @@ CREATE TABLE `tb_rol_usuario` (
 --
 
 INSERT INTO `tb_rol_usuario` (`ID`, `descripcion`, `estado_rol`, `creadoPor`, `creadoEn`, `modificadoPor`, `modificadoEn`) VALUES
-(1, 'Admin', 1, 'test', CURRENT_TIMESTAMP,null,null );
+(1, 'Admin', 1, 'test', '2017-11-20 19:19:34', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -451,10 +452,6 @@ CREATE TABLE `tb_usuario` (
   `modificadoEn` datetime DEFAULT CURRENT_TIMESTAMP,
   `id_rol` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tb_usuario`
---
 
 --
 -- Índices para tablas volcadas
@@ -629,7 +626,7 @@ ALTER TABLE `tb_usuario`
 -- AUTO_INCREMENT de la tabla `tb_clientes`
 --
 ALTER TABLE `tb_clientes`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_detalle_entrada_materia_prima`
@@ -743,7 +740,7 @@ ALTER TABLE `tb_ubicacion`
 -- AUTO_INCREMENT de la tabla `tb_usuario`
 --
 ALTER TABLE `tb_usuario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
